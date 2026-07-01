@@ -1,0 +1,714 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'AKIJ iBOS API Template'
+  description: 'API description'
+paths:
+
+# region tanvir
+  /api/process_bank_statement:
+    post:
+      tags:
+        - "bank_statement"
+      summary: "Process bank statement file"
+      description: "Endpoint to process an image or PDF and extract specific fields using OCR"
+      operationId: "processBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The image file or PDF to be processed (PDF, PNG, JPG, JPEG)"
+      responses:
+        200:
+          description: "Successfully extracted fields from the image/PDF"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Jamuna Bank Limited"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the image/PDF or extracting fields"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_jamuna_bank_statement:
+    post:
+      tags:
+        - "jamuna_bank_statement"
+      summary: "Process Jamuna bank statement file with AI"
+      description: "Endpoint to process Jamuna bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processJamunaBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Jamuna bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Jamuna Bank Limited"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+# endregion
+
+# region ibrahim
+  /api/process_ebl_bank_statement:
+    post:
+      tags:
+        - "eastern_bank_statement"
+      summary: "Process Eastern Bank statement file with AI"
+      description: "Endpoint to process Eastern Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processEasternBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Eastern Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Eastern Bank Limited"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_ncc_bank_statement:
+    post:
+      tags:
+        - "national_credit_and_commerce_bank_statement"
+      summary: "Process National Credit and Commerce Bank statement file with AI"
+      description: "Endpoint to process National Credit and Commerce Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processNCCBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of National Credit and Commerce Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "National Credit and Commerce Bank Limited"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_city_bank_statement:
+    post:
+      tags:
+        - "city_bank_statement"
+      summary: "Process City Bank statement file with AI"
+      description: "Endpoint to process City Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processCityBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of City Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "City Bank Limited"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_ucb_bank_statement:
+    post:
+      tags:
+        - "ucb_bank_statement"
+      summary: "Process UCB Bank statement file with AI"
+      description: "Endpoint to process UCB Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processUCBBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of UCB Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "United Commercial Bank PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_midland_bank_statement:
+    post:
+      tags:
+        - "midland_bank_statement"
+      summary: "Process Midland Bank statement file with AI"
+      description: "Endpoint to process Midland Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processMidlandBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Midland Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Midland Bank PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_bcb_bank_statement:
+    post:
+      tags:
+        - "bcb_bank_statement"
+      summary: "Process Bengal Commercial Bank statement file with AI"
+      description: "Endpoint to process Bengal Commercial Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processBengalCommercialBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Bengal Commercial Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Bengal Commercial Bank PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_standard_bank_statement:
+    post:
+      tags:
+        - "standard_bank_statement"
+      summary: "Process Standard Bank statement file with AI"
+      description: "Endpoint to process Standard Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processStandardBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Standard Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Standard Bank PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_bank_asia_statement:
+    post:
+      tags:
+        - "bank_asia_statement"
+      summary: "Process Bank Asia statement file with AI"
+      description: "Endpoint to process Bank Asia statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processBankAsiaStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Bank Asia statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Bank Asia PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+
+  /api/process_mtbl_bank_statement:
+    post:
+      tags:
+        - "mtbl_bank_statement"
+      summary: "Process Mutual Trust Bank statement file with AI"
+      description: "Endpoint to process Mutual Trust Bank statement PDF using Gemini AI for OCR and data extraction"
+      operationId: "processMutualTrustBankStatement"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: "The PDF file of Mutual Trust Bank statement to be processed"
+      responses:
+        200:
+          description: "Successfully extracted bank statement data using AI"
+          schema:
+            type: object
+            properties:
+              BankAccountNo:
+                type: string
+                example: "1234567890"
+              BankName:
+                type: string
+                example: "Mutual Trust Bank PLC"
+              Transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    TransactionDate:
+                      type: string
+                      example: "2024-01-15"
+                    Particulars:
+                      type: string
+                      example: "Transfer to account"
+                    InstrumentNo:
+                      type: string
+                      example: "CHQ123456"
+                    MonDebit:
+                      type: number
+                      example: 1000.50
+                    MonCredit:
+                      type: number
+                      example: 0
+                    MonBalance:
+                      type: number
+                      example: 5000.25
+        400:
+          description: "Error in processing the bank statement"
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: "Error message describing the issue"
+# endregion
